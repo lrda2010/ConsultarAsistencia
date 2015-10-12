@@ -50,11 +50,10 @@ public class LoginInteractorImpl implements LoginInteractor {
                 doc.head().appendElement("link").attr("rel", "stylesheet").attr("type",
                         "text/css").attr("href", "style.css");
 
-                doc.body().getElementsByTag("table").append("class=CSSTableGenerator");
+                doc.body().select("table").addClass("CSSTableGenerator");
+                doc.select("div").remove();
 
                 user.setAsistencia(doc.html());
-                System.out.println(doc.html());
-
                 listener.onSuccess(user);
             }
 

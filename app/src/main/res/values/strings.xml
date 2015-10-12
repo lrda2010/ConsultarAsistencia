@@ -17,4 +17,5 @@
     <string name="Contraseña">Contraseña</string>
     <string name="title_activity_main">Asistencia</string>
     <string name="works">Asistencia del Mes Actual</string>
+    <string name="ulima">Ulima</string>
 </resources>

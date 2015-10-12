@@ -8,7 +8,7 @@
 
     <!-- Login progress -->
 
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+    <ProgressBar android:id="@+id/login_progress"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginBottom="8dp" android:visibility="gone" />
 
@@ -17,7 +17,8 @@
         android:layout_height="216dp"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo"
+        android:contentDescription="@string/ulima" />
 
     <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
         android:layout_height="match_parent">
