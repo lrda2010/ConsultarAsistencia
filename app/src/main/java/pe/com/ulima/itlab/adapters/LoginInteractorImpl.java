@@ -23,7 +23,7 @@ public class LoginInteractorImpl implements LoginInteractor {
             String url = "https://webaloe.ulima.edu.pe/portalUL/j_security_check";
             String userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36";
 
-            Connection.Response response = null;
+            Connection.Response response;
 
             response = Jsoup
                     .connect(url)
@@ -41,11 +41,20 @@ public class LoginInteractorImpl implements LoginInteractor {
                 listener.onPasswordError();
             }
             else {
-                Document doc2 = Jsoup.connect("http://webaloe.ulima.edu.pe/portalUL/rh/servlets/ComandoConsultarAsistenciaMes")
+                Document doc = Jsoup.connect("http://webaloe.ulima.edu.pe/portalUL/rh/servlets/ComandoConsultarAsistenciaMes")
                     .cookies(response.cookies())
                     .userAgent(userAgent)
                     .get();
-                user.setAsistencia(doc2.html());
+
+                doc.head().getElementsByTag("link").remove();
+                doc.head().appendElement("link").attr("rel", "stylesheet").attr("type",
+                        "text/css").attr("href", "style.css");
+
+                doc.body().getElementsByTag("table").append("class=CSSTableGenerator");
+
+                user.setAsistencia(doc.html());
+                System.out.println(doc.html());
+
                 listener.onSuccess(user);
             }
 
